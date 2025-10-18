@@ -1,14 +1,16 @@
-// import hre from "hardhat";
+import { network } from "hardhat";
 
-// async function main() {
-//   const [deployer] = await hre.ethers.getSigners();
-//   console.log("Deploying with:", deployer.address);
+const { ethers } = await network.connect();
 
-//   const Bookstore = await hre.ethers.getContractFactory("Bookstore");
-//   const bookstore = await Bookstore.deploy();
+async function main() {
+  const [deployer] = await ethers.getSigners();
+  console.log("Deploying with:", deployer.address);
 
-//   await bookstore.waitForDeployment();
-//   console.log("Bookstore deployed to:", await bookstore.getAddress());
-// }
+  const Bookstore = await ethers.getContractFactory("Bookstore");
+  const bookstore = await Bookstore.deploy();
 
-// main().catch(console.error);
+  await bookstore.waitForDeployment();
+  console.log("Bookstore deployed to:", await bookstore.getAddress());
+}
+
+main().catch(console.error);

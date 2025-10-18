@@ -7,9 +7,7 @@ import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 
 /// @title Bookstore
 /// @notice A simple bookstore where the owner can add/update books, 
-///         and users can purchase them with ETH.
 contract Bookstore is ReentrancyGuard {
-    // Address of the contract owner
     address public owner;
 
     // Tracks the next available book ID for new books
@@ -188,4 +186,3 @@ contract Bookstore is ReentrancyGuard {
     receive() external payable {}
     fallback() external payable {}
 }
-```
