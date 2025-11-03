@@ -1,4 +1,3 @@
-import React from "react";
 import {
   useAccount,
   useDisconnect,
@@ -8,8 +7,8 @@ import {
 } from "wagmi";
 
 export function Account() {
-  const { address, chain } = useAccount();
-  const { isLoading, isError, error, data } = useBalance({ address });
+  const { address } = useAccount();
+  useBalance({ address });
   const { disconnect } = useDisconnect();
   const { data: ensName } = useEnsName({ address });
   const { data: ensAvatar } = useEnsAvatar({ name: ensName! });
