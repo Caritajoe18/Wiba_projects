@@ -1,14 +1,16 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.19;
 
+import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
+
 /// @title Simple Fintech Wallet System
 /// @notice Users can create accounts, deposit, withdraw, and transfer ETH to other users within the contract.
-contract Fintech {
+contract Fintech is ReentrancyGuard {
     /// @dev Struct to represent a user account
     struct Account {
-        address owner;   // Owner address
+        address owner; // Owner address
         uint256 balance; // ETH balance stored in the contract
-        bool exists;     // Whether account exists
+        bool exists; // Whether account exists
     }
 
     /// @dev Mapping from user address to their account
@@ -28,7 +30,10 @@ contract Fintech {
 
     /// @notice Create a new account
     function createAccount() external {
-        require(!accounts[msg.sender].exists, "Account already exists for this user");
+        require(
+            !accounts[msg.sender].exists,
+            "Account already exists for this user"
+        );
 
         accounts[msg.sender] = Account({
             owner: msg.sender,
